@@ -1,50 +1,65 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
-
+import { Link, useParams, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-
-import { Container, Card, Col, Row, Button } from "react-bootstrap";
-
 import "../../styles/demo.scss";
+import { element } from "prop-types";
+import { Container, Button, Card, Row, Col, Image } from "react-bootstrap";
 
 export const Generic = () => {
 	let { value } = useParams();
-
-	console.log(value);
+	const history = useHistory();
 	const { store, actions } = useContext(Context);
-	console.log(store);
+
 	useEffect(() => {
 		actions.getAllData(value);
 	}, []);
+
+	const goBack = () => {
+		history.goBack();
+	};
+
 	return (
-		<Container className="border border-dark">
+		<Container>
 			<Row>
-				<div className="carousel slide" data-ride="carousel">
-					{store[value] && store[value].length > 0 ? (
-						store[value].map((
-							element,
-							index //console.log("elemento: ", element)
-						) => (
-							<Card key={index}>
-								<div className="card-body col-sm bg-dark">
-									<div>
-										<img
-											className="card-img-top w-25 col-sm"
-											src="https://as.com/meristation/imagenes/2019/12/19/noticias/1576748977_381724_1576749029_noticia_normal.jpg"
-										/>
-									</div>
-									<h2>{value == "films" ? element.properties.title : element.name}</h2>
-									<div>
-										<Button>Details</Button>
-									</div>
-								</div>
+				{store[value] && store[value].length > 0 ? (
+					store[value].map((element, index) => (
+						<Col key={index}>
+							<br />
+							<Card style={{ width: "18rem" }}>
+								<Image
+									src="https://www.lacasadeel.net/wp-content/uploads/2014/12/Star-Wars-Logo.jpg"
+									rounded
+									className="card-img-top"
+								/>
+								<Card.Body>
+									<Card.Title>
+										{value == "films" ? element.properties.title : element.name}
+									</Card.Title>
+									<Link to={`/details/${value}/${element.uid}`}>
+										<Button variant="primary">Go to details</Button>
+									</Link>
+									<Button
+										variant="warning"
+										onClick={() => {
+											actions.addFavorite(
+												value == "films" ? element.properties.title : element.name
+											);
+										}}>
+										<i className="fa fa-heart" />
+									</Button>
+								</Card.Body>
 							</Card>
-						))
-					) : (
-						<h1>Loading...</h1>
-					)}
-				</div>
+						</Col>
+					))
+				) : (
+					<h1>Loading...</h1>
+				)}
+				<br />
 			</Row>
+			<br />
+			<Link to="/">
+				<Button variant="primary">Back to home</Button>
+			</Link>
 		</Container>
 	);
 };
