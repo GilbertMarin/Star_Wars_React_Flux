@@ -17,18 +17,33 @@ export const Generic = () => {
 		actions.getAllData(value);
 	}, []);
 	return (
-		<Container>
+		<Container className="border border-dark">
 			<Row>
-				<Col>
+				<div className="carousel slide" data-ride="carousel">
 					{store[value] && store[value].length > 0 ? (
 						store[value].map((
 							element,
 							index //console.log("elemento: ", element)
-						) => <h1 key={index}>{value == "films" ? element.properties.title : element.name}</h1>)
+						) => (
+							<Card key={index}>
+								<div className="card-body col-sm bg-dark">
+									<div>
+										<img
+											className="card-img-top w-25 col-sm"
+											src="https://as.com/meristation/imagenes/2019/12/19/noticias/1576748977_381724_1576749029_noticia_normal.jpg"
+										/>
+									</div>
+									<h2>{value == "films" ? element.properties.title : element.name}</h2>
+									<div>
+										<Button>Details</Button>
+									</div>
+								</div>
+							</Card>
+						))
 					) : (
 						<h1>Loading...</h1>
 					)}
-				</Col>
+				</div>
 			</Row>
 		</Container>
 	);
