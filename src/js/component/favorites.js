@@ -27,11 +27,10 @@ export const Favorites = () => {
 					return (
 						<Dropdown.Item key={index} href="#/action-1">
 							{item}{" "}
-                            <span onClick={() => actions.deleteFavorite(index)}>
-									<i className="fas fa-trash-alt float-right" />
-								</span>
+							<span onClick={() => actions.deleteFavorite(index)}>
+								<i className="fas fa-trash-alt float-right" />
+							</span>
 						</Dropdown.Item>
-                        
 					);
 				})}
 			</DropdownButton>
