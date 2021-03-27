@@ -32,7 +32,7 @@ export const Details = () => {
 									className="card-img-top"
 								/>
 								<Card.Body>
-									<Card.Title>{element.properties.director || element.description}</Card.Title>
+									<Card.Title>Hola</Card.Title>
 								</Card.Body>
 							</Card>
 						</Col>

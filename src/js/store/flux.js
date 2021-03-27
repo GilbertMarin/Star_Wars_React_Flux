@@ -93,12 +93,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then(resp => {
-						//console.log("respuesta", resp.json());
+						console.log("respuesta:", resp.json());
 						return resp.json();
 					})
 					.then(data => {
 						setStore({ detail: data.results || data.result });
-						//console.log(store);
+						console.log("datos: ", store.home);
 					})
 
 					.catch(err => {
@@ -111,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				store.favorites.includes(name)
 					? setStore({ favorites: store.favorites })
-					: setStore({ favorites: store.favorites.concat(name) }); //push no funciona preguntar porq
+					: setStore({ favorites: store.favorites.concat(name) });
 				console.log(store.favorites);
 			},
 
