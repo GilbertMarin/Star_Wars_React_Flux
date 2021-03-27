@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 import { Container, Row, Col, Carousel, Image, Button } from "react-bootstrap";
+import { FavoritesList, Favorites } from "../component/favorites";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
