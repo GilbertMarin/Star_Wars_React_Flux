@@ -22,7 +22,7 @@ export const Details = () => {
 	return (
 		<Container>
 			<Jumbotron>
-				<h1>Tomela con Leche</h1>
+				<h1>aqui vamos</h1>
 
 				<ul>
 					{store.home.map((element, index) => {
