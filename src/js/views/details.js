@@ -3,14 +3,15 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { element } from "prop-types";
 import { Container, Button, Card, Row, Col, Image } from "react-bootstrap";
+import { getAllDetails } from "../component/functGetDetails";
 
 export const Details = () => {
-	let { value, id } = useParams();
+	let { value, uid } = useParams();
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
-		actions.getAllDetails(value, id);
+		actions.getAllDetails(value, uid);
 	}, []);
 
 	const goBack = () => {
@@ -21,8 +22,8 @@ export const Details = () => {
 	return (
 		<Container>
 			<Row>
-				{store.detail && store.detail.length > 0 ? (
-					store.detail.map((element, index) => (
+				{store.home && store.home.length > 0 ? (
+					store.home.map((element, index) => (
 						<Col key={index}>
 							<br />
 							<Card style={{ width: "18rem" }}>
@@ -32,13 +33,13 @@ export const Details = () => {
 									className="card-img-top"
 								/>
 								<Card.Body>
-									<Card.Title>Hola</Card.Title>
+									<Card.Title>{element.properties} </Card.Title>
 								</Card.Body>
 							</Card>
 						</Col>
 					))
 				) : (
-					<h1>Loading... </h1>
+					<h1>details loading... </h1>
 				)}
 				<br />
 			</Row>

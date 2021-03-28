@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			home: [],
+			detail: [],
 			baseURL: "https://www.swapi.tech/api/",
 			favorites: []
 		},
@@ -31,7 +32,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "GET",
 
 					headers: {
-						"Content-Type": "application/json"
+						"Content-Type": "application/json",
+						Accept: "application/json"
 					}
 				})
 					.then(resp => {
@@ -67,7 +69,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "GET",
 
 					headers: {
-						"Content-Type": "application/json"
+						"Content-Type": "application/json",
+						Accept: "application/json"
 					}
 				})
 					.then(resp => {
@@ -85,11 +88,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getAllDetails: (value, id) => {
 				const store = getStore();
+				store.home;
 				fetch(`${store.baseURL}${value}/${id}`, {
 					method: "GET",
 
 					headers: {
-						"Content-Type": "application/json"
+						"Content-Type": "application/json",
+						Accept: "application/json"
 					}
 				})
 					.then(resp => {
