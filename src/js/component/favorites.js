@@ -25,7 +25,7 @@ export const Favorites = () => {
 			<DropdownButton id="dropdown-basic-button" title={`Favoritos ${store.favorites.length}`}>
 				{store.favorites.map((item, index) => {
 					return (
-						<Dropdown.Item key={index} href="#/action-1">
+						<Dropdown.Item id="item-favorites" key={index} href="#/action-1">
 							{item}{" "}
 							<span onClick={() => actions.deleteFavorite(index)}>
 								<i className="fas fa-trash-alt float-right" />
